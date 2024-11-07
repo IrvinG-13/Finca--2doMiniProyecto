@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import java.util.Arrays;
+
 
 class Producto{
     //atributos
@@ -70,11 +70,13 @@ class Producto{
 
 }
 
-class Produccion{
+class Trimestre{
     //atributos
     private double kilosProducidos;
     private double kilosVendidos;
     private double precioPromedio;
+    private String name;
+    
 }
 
 //Algoritmo Principal
