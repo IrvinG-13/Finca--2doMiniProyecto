@@ -9,16 +9,16 @@ class Producto{
 
     public void setProductoVerdura(int codeVerdura){
         if(codeVerdura == 1){
-            productosVerdura[0] = "Lechuga";
+            productosVerdura[0] = "Lechuga - 3.49$*KG";
 
         }else if(codeVerdura == 2){
-            productosVerdura[0] = "Espinaca";
+            productosVerdura[0] = "Espinaca - 3.90*KG";
 
         }else if(codeVerdura == 3){
-            productosVerdura[0] = "Apio";
+            productosVerdura[0] = "Apio - 2.99*KG";
 
         }else if (codeVerdura == 4){
-            productosVerdura[0] = "Brocoli";
+            productosVerdura[0] = "Brocoli - 4.95*Kg";
 
         }else{
             System.out.println("Codigo Invalido");
@@ -27,16 +27,16 @@ class Producto{
 
     public void setProductoVegetal(int codeVegetal){
         if(codeVegetal == 1){
-            productosVegetal[0] = "Papa";
+            productosVegetal[0] = "Papa - 2.29*KG";
 
         }else if(codeVegetal == 2){
-            productosVegetal[0] = "Zanahoria";
+            productosVegetal[0] = "Zanahoria - 2.50*KG";
 
         }else if(codeVegetal == 3){
-            productosVegetal[0] = "Tomate";
+            productosVegetal[0] = "Tomate - 2.39*KG";
 
         }else if (codeVegetal == 4){
-            productosVegetal[0] = "Cebolla";
+            productosVegetal[0] = "Cebolla - 2.65*KG";
 
         }else{
             System.out.println("Codigo Invalido");
@@ -45,16 +45,16 @@ class Producto{
 
     public void setProductoFruta(int codeFruta){
         if(codeFruta == 1){
-            productosFruta[0] = "Manzana";
+            productosFruta[0] = "Manzana - 2.49*KG";
 
         }else if(codeFruta == 2){
-            productosFruta[0] = "Naranja";
+            productosFruta[0] = "Naranja - 1.09*KG";
 
         }else if(codeFruta == 3){
-            productosFruta[0] = "Sandia";
+            productosFruta[0] = "Sandia - 1.59*KG";
 
         }else if (codeFruta == 4){
-            productosFruta[0] = "Fresa";
+            productosFruta[0] = "Guineo - 0.95*KG";
 
         }else{
             System.out.println("Codigo Invalido");
@@ -107,7 +107,7 @@ public class FincaPrimavera{
         System.out.println("1.Manzana");
         System.out.println("2.Naranja");
         System.out.println("3.Sandia");
-        System.out.println("4.Fresa");
+        System.out.println("4.Guineo");
         int codeFruta = sc.nextInt();
         producto.setProductoFruta(codeFruta);
 
