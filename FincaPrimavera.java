@@ -312,10 +312,11 @@ public class FincaPrimavera{
              code = sc.nextInt();
 
             trimestre.Informacion(code);
-
+            sc.nextLine();
            System.out.println("Desea continuar? (s/n)");
            respuesta = sc.nextLine();
         } while (respuesta.equalsIgnoreCase("s"));
+        
 
         System.out.println("\n Informacion de Trimestres");
         do {
@@ -326,9 +327,9 @@ public class FincaPrimavera{
             System.out.println("");
             System.out.println("Codigo del Trimestre?");
              code = sc.nextInt();
-
+            
             trimestre.informacionTrimestre(code);
-
+            sc.nextLine();
            System.out.println("Desea continuar? (s/n)");
            respuesta = sc.nextLine();
         } while (respuesta.equalsIgnoreCase("s"));
