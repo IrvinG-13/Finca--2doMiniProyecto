@@ -1,6 +1,4 @@
 import java.util.Scanner;
-
-
     class Producto{
         //atributos
     
@@ -76,24 +74,22 @@ import java.util.Scanner;
 
     class Trimestre{
         //atributos
-        private double kilosProducidos;
-        private double kilosVendidos;
-        private double precioPromedio;
-        private double costoVerduraKG;private double costoVegetalKG;private double costoFrutaKG;
+        private double costoVerduraKG;
+        private double costoVegetalKG;
+        private double costoFrutaKG;
         private String[] productosCultivados; // Agregamos este atributo
+        // Arreglo bidimensional para produccion por kilo en un año
+        private double[][] produccionKilo = new double[3][4];
+        //Arreglo bidimensional para costos/gastos de la produccion en un año
+        private double [][] costoproduccion = new double [3][4];
+
 
        // Método para recibir los nombres de los productos
+
        public void setProductosCultivados(String[] productos) {
         this.productosCultivados = productos;
        }
 
-        private String name;
-
-        // Arreglo bidimensional para produccion por kilo en un año
-        private double[][] produccionKilo = new double[3][4];
-        
-        //Arreglo bidimensional para costos/gastos de la produccion en un año
-        private double [][] costoproduccion = new double [3][4];
 
         public void produccionTrimestres(int fila, int columna, double kilosProducidos){
             //datos de produccion
@@ -130,6 +126,7 @@ import java.util.Scanner;
                 case 4: costoFrutaKG = 0.95; break;
             }
         }
+
         // impresion de prueba para ver si esta guardando los valores
         public void ImpresionProdTrimestres(){
             for(int x=0;x<produccionKilo.length;x++){
@@ -138,7 +135,112 @@ import java.util.Scanner;
                 }
             }  
         }
+
+        //Punto B
+        public void productoConMayorProduccion(){
+            double[] sumaAnual = new double[3]; 
+            for (int i = 0; i < produccionKilo.length; i++) {
+                for (int j = 0; j < produccionKilo[i].length; j++) {
+                    sumaAnual[i] += produccionKilo[i][j];
+                }
+            }
+    
+            double maxProduccion = sumaAnual[0];
+            int indexMayorProduccion = 0;
+            for (int i = 1; i < sumaAnual.length; i++) {
+                if (sumaAnual[i] > maxProduccion) {
+                    maxProduccion = sumaAnual[i];
+                    indexMayorProduccion = i;
+                }
+            }
+            
+            System.out.println("El producto con mayor producción anual es: " + productosCultivados[indexMayorProduccion]);
+            System.out.println("Producción anual: " + maxProduccion + " kg");
+            
+        }
+
+        //Punto C
+        public void productoConMenorProduccion() {
+            double[] sumaAnual = new double[3]; 
+        
+            for (int i = 0; i < produccionKilo.length; i++) {
+                for (int j = 0; j < produccionKilo[i].length; j++) {
+                    sumaAnual[i] += produccionKilo[i][j];
+                }
+            }
+        
+            
+            double minProduccion = sumaAnual[0];
+            int indexMenorProduccion = 0;
+            for (int i = 1; i < sumaAnual.length; i++) {
+                if (sumaAnual[i] < minProduccion) {
+                    minProduccion = sumaAnual[i];
+                    indexMenorProduccion = i;
+                }
+            }
+        
+            System.out.println("El producto con menor producción anual es: " + productosCultivados[indexMenorProduccion]);
+            System.out.println("Producción anual: " + minProduccion + " kg");
+        }
+
+        public void Informacion(int code){
+            int index = code - 1; 
+
+            if (index < 0 || index >= productosCultivados.length) {
+                System.out.println("Código de producto inválido.");
+                return;
+            }
+    
+            System.out.println("\nInformación del producto: " + productosCultivados[index]);
+    
+            double produccionAnual = 0;
+            double costoAnual = 0;
+            
+            
+            for (int trimestre = 0; trimestre < 4; trimestre++) {
+                System.out.println("Trimestre " + (trimestre + 1) + ": ");
+                System.out.println("  Producción: " + produccionKilo[index][trimestre] + " kg");
+                System.out.println("  Costo: $" + costoproduccion[index][trimestre]);
+    
+                produccionAnual += produccionKilo[index][trimestre];
+                costoAnual += costoproduccion[index][trimestre];
+            }
+    
+            System.out.println("Producción anual total: " + produccionAnual + " kg");
+            System.out.println("Costo anual total: $" + costoAnual);
+            System.out.println();
+        }
+
+        public void informacionTrimestre(int code) {
+            if (code < 1 || code > 4) {
+                System.out.println("Código de trimestre inválido.");
+                return;
+            }
+        
+            int indexTrimestre = code - 1;
+            System.out.println("\nInformación del Trimestre " + code + ":");
+        
+            double produccionTotalTrimestre = 0;
+            double costoTotalTrimestre = 0;
+        
+            
+            for (int i = 0; i < productosCultivados.length; i++) {
+                System.out.println("Producto: " + productosCultivados[i]);
+                System.out.println("  Producción: " + produccionKilo[i][indexTrimestre] + " kg");
+                System.out.println("  Costo: $" + costoproduccion[i][indexTrimestre]);
+        
+                produccionTotalTrimestre += produccionKilo[i][indexTrimestre];
+                costoTotalTrimestre += costoproduccion[i][indexTrimestre];
+            }
+        
+            System.out.println("Producción total del trimestre: " + produccionTotalTrimestre + " kg");
+            System.out.println("Costo total del trimestre: $" + costoTotalTrimestre);
+            System.out.println("");
+        }
+        
     }
+       
+
 
 //Algoritmo Principal
 public class FincaPrimavera{
@@ -147,7 +249,8 @@ public class FincaPrimavera{
         Producto producto = new Producto();
         Trimestre trimestre = new Trimestre();
         double kilosProducidos;
-
+        String respuesta;
+        int code; 
         System.out.println("\n Bienvenido a la Finca Primavera");
         System.out.println("--Seleccione una verdura a cultivar este 2024");
         System.out.println("1.Lechuga - 3.49$*KG");
@@ -179,7 +282,6 @@ public class FincaPrimavera{
         System.out.println("");
 
 
-        producto.productosCultivados();
         for(int k=0;k<4;k++){ 
         System.out.println("Kilos de Verduras producidos el Trimestre "+(k+1));
            kilosProducidos = sc.nextDouble();
@@ -195,7 +297,42 @@ public class FincaPrimavera{
          kilosProducidos= sc.nextDouble();
               trimestre.produccionTrimestres(2,f,kilosProducidos);
         }
+        System.out.println("");
         trimestre.ImpresionProdTrimestres();
+        trimestre.productoConMayorProduccion();
+        trimestre.productoConMenorProduccion();
+
+        System.out.println("\n Informacion de Productos");
+        do {
+            System.out.println("Codigo 1 = Verdura");
+            System.out.println("Codigo 2 = Vegetal");
+            System.out.println("Codigo 3 = Fruta");
+            System.out.println("");
+            System.out.println("Codigo del Producto?");
+             code = sc.nextInt();
+
+            trimestre.Informacion(code);
+
+           System.out.println("Desea continuar? (s/n)");
+           respuesta = sc.nextLine();
+        } while (respuesta.equalsIgnoreCase("s"));
+
+        System.out.println("\n Informacion de Trimestres");
+        do {
+            System.out.println("Codigo 1 = Trimestre 1");
+            System.out.println("Codigo 2 = Trimestre 2");
+            System.out.println("Codigo 3 = Trimestre 3");
+            System.out.println("Codigo 4 = Trimestre 4");
+            System.out.println("");
+            System.out.println("Codigo del Trimestre?");
+             code = sc.nextInt();
+
+            trimestre.informacionTrimestre(code);
+
+           System.out.println("Desea continuar? (s/n)");
+           respuesta = sc.nextLine();
+        } while (respuesta.equalsIgnoreCase("s"));
+
         sc.close();
     }
-}
+} 
