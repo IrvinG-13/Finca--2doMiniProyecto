@@ -11,65 +11,26 @@ import java.util.Scanner;
             return productoscultivados;
         }
         
-        public void setProductoVerdura(int codeVerdura){
-            if(codeVerdura == 1){
-                productoscultivados[0] = "Lechuga ";
-
-            }else if(codeVerdura == 2){
-                productoscultivados[0] = "Espinaca";
-
-            }else if(codeVerdura == 3){
-                productoscultivados[0] = "Apio";
-
-            }else if (codeVerdura == 4){
-                productoscultivados[0] = "Brocoli";
-
-            }else{
-                System.out.println("Codigo Invalido");
-            }
+        public void setProductoVerdura(String codeVerdura){
+            
+                productoscultivados[0] = codeVerdura; 
         }
 
-        public void setProductoVegetal(int codeVegetal){
-            if(codeVegetal == 1){
-                productoscultivados[1] = "Papa";
-
-            }else if(codeVegetal == 2){
-                productoscultivados[1] = "Zanahoria";
-
-            }else if(codeVegetal == 3){
-                productoscultivados[1] = "Tomate";
-
-            }else if (codeVegetal == 4){
-                productoscultivados[1] = "Cebolla";
-
-            }else{
-                System.out.println("Codigo Invalido");
-            }
+        public void setProductoVegetal(String codeVegetal){
+           
+                productoscultivados[1] = codeVegetal;
         }
 
-        public void setProductoFruta(int codeFruta){
-            if(codeFruta == 1){
-                productoscultivados[2] = "Manzana";
-
-            }else if(codeFruta == 2){
-                productoscultivados[2] = "Naranja";
-
-            }else if(codeFruta == 3){
-                productoscultivados[2] = "Sandia";
-
-            }else if (codeFruta == 4){
-                productoscultivados[2] = "Guineo";
-
-            }else{
-                System.out.println("Codigo Invalido");
-            }
+        public void setProductoFruta(String codeFruta){
+         
+                productoscultivados[2] = codeFruta;
         }
 
         // Impresion de Productos Seleccionados
         public void productosCultivados(){
             System.out.println("Verdura Selecionada : " + productoscultivados[0]);
-            System.out.println("Producto Selecionado : " + productoscultivados[1]);
-            System.out.println("Producto Selecionado : " + productoscultivados[2]);
+            System.out.println("Vegetal Selecionado : " + productoscultivados[1]);
+            System.out.println("Fruta Selecionado : " + productoscultivados[2]);
         }
 
     }
@@ -112,40 +73,33 @@ import java.util.Scanner;
                 
             }
         }  
-        public void costotrimestre(int codeVerdura,int codeVegetal,int codeFruta){
-            switch(codeVerdura){
-                case 1: costoVerduraKG = 3.49; break;
-                case 2: costoVerduraKG = 3.90; break;
-                case 3: costoVerduraKG = 2.99; break;
-                case 4: costoVerduraKG = 4.95; break; 
-            }
-            switch(codeVegetal){
-                case 1: costoVegetalKG = 2.29; break;
-                case 2: costoVegetalKG = 2.50; break;
-                case 3: costoVegetalKG = 2.39; break;
-                case 4: costoVegetalKG = 2.65; break;
-            }
-            switch(codeFruta){
-                case 1: costoFrutaKG = 2.49; break;
-                case 2: costoFrutaKG = 1.09; break;
-                case 3: costoFrutaKG = 1.59; break;
-                case 4: costoFrutaKG = 0.95; break;
-            }
-        }
+        public void costotrimestre(double costeVerdura,double costeVegetal,double costeFruta){
+            
+                costoVerduraKG = costeVerdura; 
+
+                costoVegetalKG = costeVegetal; 
+                
+                costoFrutaKG = costeFruta; 
+                
+        } 
 
         // impresion de prueba para ver si esta guardando los valores
         public void ImpresionProdTrimestres(){
             for(int x=0;x<produccionKilo.length;x++){
+                System.out.println("");
                 for(int y=0;y<produccionKilo[x].length;y++){
-                    System.out.println("El producto " + productosCultivados[x]  + " con " + produccionKilo[x][y] + " Kilogramos producidos y su costo por trimestre es de "+ costoproduccion[x][y] );
+                    System.out.println("El producto " + productosCultivados[x]  + " con " + produccionKilo[x][y] + " Kilogramos producidos y su costo en el trimestre " + (y+1) +" es de "+ costoproduccion[x][y] );
                 }
             }  
         }
 
         //Impresion de Producto con mayor produccion
         public void productoConMayorProduccion(){
+
             double[] sumaAnual = new double[3]; 
+            //recorrido de filas
             for (int i = 0; i < produccionKilo.length; i++) {
+                //recorrido de columnas / trimestres
                 for (int j = 0; j < produccionKilo[i].length; j++) {
                     sumaAnual[i] += produccionKilo[i][j];
                 }
@@ -160,7 +114,7 @@ import java.util.Scanner;
                 }
             }
             
-            System.out.println("El producto con mayor producción anual es: " + productosCultivados[indexMayorProduccion]);
+            System.out.println("\nEl producto con mayor producción anual es: " + productosCultivados[indexMayorProduccion]);
             System.out.println("Producción anual: " + maxProduccion + " kg");
             
         }
@@ -185,7 +139,7 @@ import java.util.Scanner;
                 }
             }
         
-            System.out.println("El producto con menor producción anual es: " + productosCultivados[indexMenorProduccion]);
+            System.out.println("\nEl producto con menor producción anual es: " + productosCultivados[indexMenorProduccion]);
             System.out.println("Producción anual: " + minProduccion + " kg");
         }
 
@@ -265,49 +219,53 @@ import java.util.Scanner;
 
                 //Preuntas que vera el Usuario al iniciar
                 System.out.println("\n Bienvenido a la Finca Primavera");
-                System.out.println("--Seleccione una verdura a cultivar este 2024");
-                System.out.println("1.Lechuga - 3.49$*KG");
-                System.out.println("2.Espinaca - 3.90*KG");
-                System.out.println("3.Apio - 2.99*KG");
-                System.out.println("4.Brocoli - 4.95*KG");
-                int codeVerdura = sc.nextInt();
+                System.out.println("\n--Ingrese una verdura a cultivar este 2024");
+               
+                String codeVerdura = sc.nextLine();
                 producto.setProductoVerdura(codeVerdura);
+                //Ingreso de costes
+                System.out.println("Ingrese el coste de produccion en Kg");
+                double costeVerdura = sc.nextDouble();
+                sc.nextLine();
 
-                System.out.println("--Seleccione un vegetal a cultivar este 2024");
-                System.out.println("1.Papa - 2.29*KG");
-                System.out.println("2.Zanahoria - 2.50*KG");
-                System.out.println("3.Tomate - 2.39*KG");
-                System.out.println("4.Cebolla - 2.65*KG");
-                int codeVegetal = sc.nextInt();
+                System.out.println("\n--Ingrese un vegetal a cultivar este 2024");
+                
+                String codeVegetal = sc.nextLine();
                 producto.setProductoVegetal(codeVegetal);
+                //Ingreso de costes
+                System.out.println("Ingrese el coste de produccion en Kg");
+                double costeVegetal = sc.nextDouble();
+                sc.nextLine();
 
-                System.out.println("--Seleccione una fruta a cultivar este 2024");
-                System.out.println("1.Manzana - 2.49*KG");
-                System.out.println("2.Naranja - 1.09*KG");
-                System.out.println("3.Sandia - 1.59*KG");
-                System.out.println("4.Guineo - 0.95*KG");
-                int codeFruta = sc.nextInt();
+
+                System.out.println("\n--Ingrese una fruta a cultivar este 2024");
+              
+                String codeFruta = sc.nextLine();
                 producto.setProductoFruta(codeFruta);
+                //Ingreso de costes
+                System.out.println("Ingrese el coste de produccion en Kg");
+                double costeFruta = sc.nextDouble();
+                sc.nextLine();
 
                 //Call Back de las funciones que imnpriman los productos seleccionados
                 trimestre.setProductosCultivados(producto.getProductosCultivados());
-                trimestre.costotrimestre(codeVerdura,codeVegetal,codeFruta);
+                trimestre.costotrimestre(costeVerdura,costeVegetal,costeFruta);
                 producto.productosCultivados();
                 System.out.println("");
 
                 //Impresion de los Calculos de Kilos producidos
                 for(int k=0;k<4;k++){ 
-                System.out.println("Kilos de Verduras producidos el Trimestre "+(k+1));
+                System.out.println("Kilos de "+codeVerdura+ " producidos el Trimestre "+(k+1));
                 kilosProducidos = sc.nextDouble();
                     trimestre.produccionTrimestres(0,k,kilosProducidos);
                 }
                 for(int v=0;v<4;v++){
-                System.out.println("Kilos de Vegetales producidos el Trimestre"+(v+1));
+                System.out.println("Kilos de "+codeVegetal+ " producidos el Trimestre"+(v+1));
                 kilosProducidos = sc.nextDouble();
                     trimestre.produccionTrimestres(1,v,kilosProducidos);
                 }
                 for(int f=0; f<4;f++){
-                System.out.println("Kilos de Frutas producidos el Trimestre"+(f+1));
+                System.out.println("Kilos de "+codeFruta+ " producidos el Trimestre"+(f+1));
                 kilosProducidos= sc.nextDouble();
                     trimestre.produccionTrimestres(2,f,kilosProducidos);
                 }
@@ -330,7 +288,7 @@ import java.util.Scanner;
 
                     trimestre.Informacion(code);
                     sc.nextLine();
-                System.out.println("Desea continuar? (s/n)");
+                System.out.println("Desea volver? (s/n)");
                 respuesta = sc.nextLine();
                 } while (respuesta.equalsIgnoreCase("s"));
                 
@@ -347,7 +305,7 @@ import java.util.Scanner;
                     
                     trimestre.informacionTrimestre(code);
                     sc.nextLine();
-                System.out.println("Desea continuar? (s/n)");
+                System.out.println("Desea volver? (s/n)");
                 respuesta = sc.nextLine();
                 } while (respuesta.equalsIgnoreCase("s"));
 
